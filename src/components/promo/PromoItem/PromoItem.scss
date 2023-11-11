@@ -1,0 +1,48 @@
+@use 'shared/scss' as *;
+
+.promo__container {
+  position: relative;
+
+  .background__image {
+    width: 100%;
+    height: 500px;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .promo__action {
+    position: absolute;
+    bottom: 120px;
+    left: 100px;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #020912;
+    padding: 20px;
+
+    h2 {
+      font-size: 50px;
+      color: white;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    p {
+      color: #fcfcfc;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    button {
+      padding: 10px 15px;
+      background-color: #fcfcfc;
+      border: none;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+  }
+}

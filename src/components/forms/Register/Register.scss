@@ -1,0 +1,80 @@
+@use 'shared/scss' as *;
+@import '../../../shared/scss/variables.scss';
+
+.register__form {
+  .title {
+    color: $secondary-color;
+    font-size: 30px;
+    text-align: center;
+    font-weight: 200;
+  }
+
+  &--control {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 0;
+    position: relative;
+
+    label {
+      color: $secondary-color;
+      font-size: 20px;
+      letter-spacing: 1.8px;
+      font-weight: 200;
+      width: 120px;
+      position: absolute;
+      top: -15px;
+      left: 25px;
+      background-color: $primary-color;
+      text-align: center;
+    }
+
+    input {
+      background-color: $primary-color;
+      border: 1px solid $terciary-color;
+      padding: 25px 15px 15px 15px;
+      border-radius: 8px;
+      color: $secondary-color;
+      font-size: 20px;
+      outline: none;
+
+      &::placeholder {
+        font-size: 20px;
+      }
+    }
+  }
+
+  &--action {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    button {
+      padding: 20px;
+      font-size: 16px;
+      background-color: $primary-color;
+      border: 1px solid $terciary-color;
+      color: $secondary-color;
+      letter-spacing: 1.8px;
+      border-radius: 8px;
+
+      &:hover {
+        color: black;
+        background-color: $terciary-color;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &--special {
+    text-align: center;
+    margin-bottom: 20px;
+    color: $secondary-color;
+    cursor: pointer;
+
+    &:hover {
+      color: $terciary-color;
+      text-decoration: underline;
+      text-underline-offset: 5px;
+    }
+  }
+}

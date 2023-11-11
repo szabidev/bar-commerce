@@ -1,0 +1,17 @@
+@use 'shared/scss' as *;
+
+.logo__container {
+  width: 150px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  cursor: pointer;
+
+  .logo__title {
+    margin: 0;
+    color: white;
+    font-size: 30px;
+    letter-spacing: 1px;
+    font-weight: 200;
+  }
+}

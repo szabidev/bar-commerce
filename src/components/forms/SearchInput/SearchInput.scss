@@ -1,0 +1,51 @@
+@use 'shared/scss' as *;
+
+.search__form {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &--control {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    label {
+      width: 80px;
+      text-align: center;
+      background-color: #020912;
+      color: #fcfcfc;
+      font-size: 20px;
+      letter-spacing: 1.8px;
+      font-weight: 200;
+      position: absolute;
+      bottom: 53px;
+      left: 20px;
+    }
+
+    input {
+      background-color: #020912;
+      border: 1px solid white;
+      padding: 25px 15px 15px 15px;
+      border-radius: 8px;
+      color: #fcfcfc;
+      font-size: 20px;
+      outline: none;
+
+      &::placeholder {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .search {
+    position: absolute;
+    top: 15px;
+    right: 60px;
+  }
+
+  .close {
+    margin-left: 10px;
+  }
+}

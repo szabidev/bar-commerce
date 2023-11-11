@@ -1,0 +1,17 @@
+@import '../../../shared/scss/variables.scss';
+.product__cta {
+  width: 100%;
+
+  .add__to__cart {
+    width: 100%;
+    padding: 15px 0;
+    font-size: 16px;
+    font-weight: 200;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    background-color: $terciary-color;
+    border: none;
+    border-top: 1px solid $primary-color;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,16 @@
+export const routes = Object.freeze({
+  DASHBOARD: '/',
+  ABOUT: '/about',
+  ADMIN: '/admin',
+  BARWARE: '/barware',
+  BOOKS: '/books',
+  CART: '/cart',
+  CONTACT: '/contact',
+  FAQ: '/faq',
+  GLASSWARE: '/glassware',
+  KNIVES: '/knives',
+  RETURN: '/return',
+  SEARCH: '/search',
+  SETS: '/sets',
+  TERMS: '/terms',
+});

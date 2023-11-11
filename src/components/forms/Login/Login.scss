@@ -1,0 +1,54 @@
+@use 'shared/scss' as *;
+
+.login__form {
+  &--control {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 30px;
+    width: 100%;
+
+    label {
+      width: 100px;
+      text-align: center;
+      background-color: #020912;
+      color: #fcfcfc;
+      font-size: 20px;
+      letter-spacing: 1.8px;
+      font-weight: 200;
+      position: absolute;
+      bottom: 53px;
+      left: 20px;
+    }
+
+    input {
+      background-color: #020912;
+      border: 1px solid white;
+      padding: 25px 15px 15px 15px;
+      border-radius: 8px;
+      color: #fcfcfc;
+      font-size: 20px;
+      outline: none;
+    }
+  }
+
+  &--action {
+    display: flex;
+    justify-content: space-evenly;
+
+    button {
+      padding: 10px 15px;
+      font-size: 20px;
+      letter-spacing: 1.8px;
+      border: 1px solid #fcfcfc;
+      background-color: #020912;
+      color: #fcfcfc;
+      cursor: pointer;
+
+      &:hover {
+        color: #020912;
+        background-color: #fcfcfc;
+      }
+    }
+  }
+}

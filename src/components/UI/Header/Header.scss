@@ -1,0 +1,44 @@
+@import '../../../shared/scss/variables.scss';
+
+.header__container {
+  background-color: $primary-color;
+  height: 120px;
+
+  .header {
+    &__menu {
+      padding: 10px 30px;
+      display: flex;
+      flex-direction: column;
+      &--main {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &__signin {
+          width: 100px;
+          display: flex;
+          justify-content: space-evenly;
+        }
+      }
+
+      &--secondary {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-evenly;
+        color: $secondary-color;
+        font-size: 20px;
+        font-weight: 200;
+
+        &__items {
+          color: $secondary-color;
+          &:hover {
+            color: $terciary-color;
+            text-decoration: underline;
+            text-underline-offset: 8px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
