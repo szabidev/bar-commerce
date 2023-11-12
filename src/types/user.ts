@@ -1,5 +1,10 @@
 export default interface User {
-    personalInfo:{};
-    isSignedIn:boolean;
-    isAdmin:boolean;
+  personalInfo: {
+    email: string;
+    name: string;
+    id?: string;
+  };
+  isSignedIn: boolean;
+  isAdmin: boolean;
+  isRegistered: boolean;
 }

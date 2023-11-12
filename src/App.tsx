@@ -33,7 +33,6 @@ function App() {
   const wineOpener = sortByClass(itemData, 'wine opener');
   const coffeeGrinder = sortByClass(itemData, 'coffee grinder');
 
-  console.log(knifeProducts);
   useEffect(() => {
     fetch('https://bar-commerce-default-rtdb.firebaseio.com/items.json')
       .then((res) => {

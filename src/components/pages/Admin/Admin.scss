@@ -1,0 +1,22 @@
+@import '../../../shared/scss/variables.scss';
+
+.admin__container {
+  background-color: $secondary-color;
+  padding: 70px 40px;
+  display: flex;
+  position: relative;
+
+  .show__filter {
+    position: absolute;
+    top: 10px;
+    left: calc(50% - 90px);
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    background-color: $primary-color;
+    color: $secondary-color;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+}

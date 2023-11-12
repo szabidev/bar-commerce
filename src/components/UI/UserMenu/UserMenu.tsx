@@ -10,11 +10,13 @@ import Tooltip from '@mui/material/Tooltip';
 import Modal from '../Modal';
 import Login from '../../forms/Login/Login';
 import Register from '../../forms/Register';
+import { Link } from 'react-router-dom';
+import { routes } from '../../../app-router';
+import { useAppSelector } from '../../../hooks/useAppSelector';
 
 const UserMenu: FC = () => {
-  const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
-  const [isAdmin, setIsAdmin] = useState<boolean>(false);
-  const [isRegistered, setIsRegistered] = useState<boolean>(false);
+  const store = useAppSelector((state) => state.userDetails);
+  const { isSignedIn, isRegistered, isAdmin } = store;
   const [showLogin, setShowLogin] = useState<boolean>(false);
   const [showRegister, setShowRegister] = useState<boolean>(false);
   const handleLoginPopup = () => {
@@ -61,13 +63,17 @@ const UserMenu: FC = () => {
           </Tooltip>
         </>
       )}
-      {isSignedIn && isAdmin && (
+      {isSignedIn && isAdmin && isRegistered && (
         <>
           <Tooltip title="Admin Panel">
-            <AdminPanelSettingsIcon htmlColor="white" cursor="pointer" />
+            <Link to={routes.ADMIN}>
+              <AdminPanelSettingsIcon htmlColor="white" cursor="pointer" />
+            </Link>
           </Tooltip>
           <Tooltip title="Shopping cart">
-            <ShoppingCartIcon htmlColor="white" cursor="pointer" />
+            <Link to={routes.CART}>
+              <ShoppingCartIcon htmlColor="white" cursor="pointer" />
+            </Link>
           </Tooltip>
           <Tooltip title="Log out">
             <LogoutIcon htmlColor="white" cursor="pointer" />

@@ -1,0 +1,59 @@
+@import '../../../shared/scss/variables.scss';
+
+.adminlist__container {
+  width: 400px;
+  border: 1px solid black;
+  position: absolute;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: calc(100vh);
+  overflow: scroll;
+  overflow-x: hidden;
+  background-color: $terciary-color;
+  //   transition: width 0.3s ease;
+  //   margin-right: -402px;
+
+  .adminlist__action {
+    h3 {
+      text-align: center;
+      font-size: 26px;
+      font-weight: 300;
+      letter-spacing: 1px;
+      margin: 10px 0;
+      text-decoration: underline;
+      text-underline-offset: 6px;
+    }
+
+    .filter {
+      text-align: center;
+
+      button {
+        width: 100px;
+        padding: 5px 10px;
+        font-size: 16px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        background-color: $primary-color;
+        color: $secondary-color;
+        border: none;
+        border-radius: 4px;
+        margin: 0 auto;
+        margin-top: 10px;
+        cursor: pointer;
+      }
+    }
+    .filter-info {
+      text-align: center;
+    }
+  }
+
+  .products__list {
+    list-style: none;
+    padding: 5px 15px;
+  }
+
+  //   &.active {
+  //     transform: translateX(-402px);
+  //   }
+}
