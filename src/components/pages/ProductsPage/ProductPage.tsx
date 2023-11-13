@@ -8,7 +8,7 @@ import { useAppSelector } from '../../../hooks/useAppSelector';
 import { routes } from '../../../app-router';
 import { useNavigate } from 'react-router-dom';
 import ProductCard from '../../card/ProductCard';
-import { ShopItem } from '../../../types/items';
+import { ShopItem } from '../../../types/products';
 
 const StyledGrid = styled(Grid)({
   display: 'flex',

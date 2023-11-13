@@ -4,13 +4,15 @@ import styled from '@emotion/styled';
 
 import AdminListItem from '../AdminListItem';
 import CloseIcon from '@mui/icons-material/Close';
+import { ShopItem } from '../../../types/products';
 
 interface AdminListProps {
   showInventory: boolean;
   setInventory: (x: boolean) => void;
+  selectProduct: (x: ShopItem) => void;
 }
 
-const AdminList: FC<AdminListProps> = ({ showInventory, setInventory }) => {
+const AdminList: FC<AdminListProps> = ({ showInventory, setInventory, selectProduct }) => {
   const store = useAppSelector((state) => state.productsDetail);
   const { allProducts } = store.products;
 
@@ -31,6 +33,12 @@ const AdminList: FC<AdminListProps> = ({ showInventory, setInventory }) => {
     setInventory(false);
   };
 
+  const handleSelect = (product: ShopItem) => {
+    selectProduct(product);
+    console.log(product);
+    handleCancel();
+  };
+
   return (
     <div className={`adminlist__container ${showInventory ? 'active' : ''}`}>
       <div className="adminlist__action">
@@ -43,7 +51,12 @@ const AdminList: FC<AdminListProps> = ({ showInventory, setInventory }) => {
       </div>
       <ul className="products__list">
         {allProducts.map((product) => (
-          <AdminListItem image={product.image} name={product.name} productClass={product.class} />
+          <AdminListItem
+            image={product.image}
+            name={product.name}
+            productClass={product.class}
+            onSelect={() => handleSelect(product)}
+          />
         ))}
       </ul>
     </div>

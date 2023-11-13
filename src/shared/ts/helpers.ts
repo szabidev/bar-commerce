@@ -1,4 +1,4 @@
-import { ShopItem } from '../../types/items';
+import { ShopItem } from '../../types/products';
 
 export const sortData = (items: ShopItem[], text: string) => {
   return items.filter((item) => item.type === text);

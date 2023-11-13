@@ -6,7 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
 
-import { CardProps } from '../../../types/items';
+import { CardProps } from '../../../types/products';
 
 const StyledCard = styled(Card)({
   boxShadow: '0px 0px 23px 2px rgba(0,0,0,0.20)',

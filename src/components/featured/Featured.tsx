@@ -1,6 +1,6 @@
 import FeaturedCard from '../card/FeaturedCard.tsx';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import { ShopItem } from '../../types/items.js';
+import { ShopItem } from '../../types/products.js';
 import Grid from '@mui/material/Grid';
 import './Featured.scss';
 

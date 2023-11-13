@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { FC } from 'react';
 import { styled } from '@mui/system';
-import { CardProps } from '../../../types/items';
+import { CardProps } from '../../../types/products';
 
 const StyledCard = styled(Card)({
   transition: 'all 0.2s ease-in',

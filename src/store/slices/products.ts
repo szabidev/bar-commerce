@@ -1,37 +1,49 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ShopItem } from '../../types/items';
+import { Products, ShopItem } from '../../types/products';
 
-const initialState = {
+const initialState: Products = {
   products: {
-    allProducts: [] as ShopItem[],
+    allProducts: [],
     productsByType: {
-      barware: [] as ShopItem[],
-      machine: [] as ShopItem[],
-      book: [] as ShopItem[],
-      glass: [] as ShopItem[],
-      set: [] as ShopItem[],
-      knives: [] as ShopItem[],
+      barware: [],
+      machine: [],
+      book: [],
+      glass: [],
+      set: [],
+      knives: [],
     },
     productsByClass: {
-      shaker: [] as ShopItem[],
-      books: [] as ShopItem[],
-      glass: [] as ShopItem[],
-      machine: [] as ShopItem[],
-      muddler: [] as ShopItem[],
-      jigger: [] as ShopItem[],
-      blender: [] as ShopItem[],
-      strainer: [] as ShopItem[],
-      set: [] as ShopItem[],
-      juicer: [] as ShopItem[],
-      mixingSpoon: [] as ShopItem[],
-      shotGlass: [] as ShopItem[],
-      margaritaMachine: [] as ShopItem[],
-      beerGlass: [] as ShopItem[],
-      sodaMaker: [] as ShopItem[],
-      wineOpener: [] as ShopItem[],
-      coffeeGrinder: [] as ShopItem[],
+      shaker: [],
+      books: [],
+      glass: [],
+      machine: [],
+      muddler: [],
+      jigger: [],
+      blender: [],
+      strainer: [],
+      set: [],
+      juicer: [],
+      mixingSpoon: [],
+      shotGlass: [],
+      margaritaMachine: [],
+      beerGlass: [],
+      sodaMaker: [],
+      wineOpener: [],
+      coffeeGrinder: [],
     },
-    soldOutProducts: [] as ShopItem[],
+    soldOutProducts: [],
+    lastAdded: {
+      class: '',
+      description: '',
+      image: '',
+      isPromo: '',
+      material: '',
+      name: '',
+      price: 0,
+      quantity: 0,
+      type: '',
+      author: '',
+    },
   },
 };
 
@@ -73,10 +85,30 @@ const productsDetailSlice = createSlice({
         coffeeGrinder: payload.coffeeGrinder,
       };
     },
+    addProduct(state, { payload }: PayloadAction<ShopItem & { type: string }>) {
+      const { type } = payload;
+      state.products.allProducts.push(payload);
+
+      if (type in state.products.productsByType) {
+        (state.products.productsByType as any)[type].push(payload);
+      }
+
+      if (payload.class in state.products.productsByClass) {
+        (state.products.productsByClass as any)[payload.class].push(payload);
+      }
+    },
+    lastProductAdded(state, { payload }: PayloadAction<ShopItem>) {
+      state.products.lastAdded = payload;
+    },
   },
 });
 
-export const { setAllProducts, setProductsByType, setProductsByClass } =
-  productsDetailSlice.actions;
+export const {
+  addProduct,
+  lastProductAdded,
+  setAllProducts,
+  setProductsByType,
+  setProductsByClass,
+} = productsDetailSlice.actions;
 
 export const productsDetail = productsDetailSlice.reducer;

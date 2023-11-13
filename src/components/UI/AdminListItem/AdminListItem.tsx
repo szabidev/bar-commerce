@@ -5,11 +5,12 @@ interface AdminListItemProps {
   name: string;
   productClass: string;
   image: string;
+  onSelect: () => void;
 }
 
-const AdminListItem: FC<AdminListItemProps> = ({ image, name, productClass }) => {
+const AdminListItem: FC<AdminListItemProps> = ({ image, name, productClass, onSelect }) => {
   return (
-    <li className="adminlist__item">
+    <li className="adminlist__item" onClick={onSelect}>
       <Paper sx={{ margin: '15px 0' }}>
         <div className="list__item">
           <div className="list__image">

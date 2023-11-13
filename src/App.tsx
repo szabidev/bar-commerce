@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAppDispatch } from './hooks/useAppDispatch';
 import { AppRouter } from './app-router';
-import { ShopItem } from './types/items';
+import { ShopItem } from './types/products';
 import { AppStore } from './store';
 import { setAllProducts, setProductsByType, setProductsByClass } from './store/slices/products';
 import { sortByClass } from './shared/ts/helpers';
@@ -39,45 +39,43 @@ function App() {
         return res.json();
       })
       .then((data) => {
-        setItemData(data);
+        setItemData(Object.values(data));
       });
   }, []);
 
   useEffect(() => {
-    if (itemData) {
-      dispatch(setAllProducts(itemData));
-      dispatch(
-        setProductsByType({
-          barware: barProducts,
-          machine: machineProducts,
-          glass: glassProducts,
-          book: bookProducts,
-          set: setProducts,
-          knives: knifeProducts,
-        }),
-      );
-      dispatch(
-        setProductsByClass({
-          shaker,
-          books,
-          glass,
-          machine,
-          muddler,
-          jigger,
-          blender,
-          strainer,
-          set,
-          juicer,
-          mixingSpoon,
-          shotGlass,
-          margaritaMachine,
-          beerGlass,
-          sodaMaker,
-          wineOpener,
-          coffeeGrinder,
-        }),
-      );
-    }
+    dispatch(setAllProducts(itemData));
+    dispatch(
+      setProductsByType({
+        barware: barProducts,
+        machine: machineProducts,
+        glass: glassProducts,
+        book: bookProducts,
+        set: setProducts,
+        knives: knifeProducts,
+      }),
+    );
+    dispatch(
+      setProductsByClass({
+        shaker,
+        books,
+        glass,
+        machine,
+        muddler,
+        jigger,
+        blender,
+        strainer,
+        set,
+        juicer,
+        mixingSpoon,
+        shotGlass,
+        margaritaMachine,
+        beerGlass,
+        sodaMaker,
+        wineOpener,
+        coffeeGrinder,
+      }),
+    );
   }, [
     barProducts,
     machineProducts,
