@@ -17,15 +17,18 @@
 
       &__list {
         padding: 0;
-        color: $secondary-color;
         list-style: none;
+        display: flex;
+        flex-direction: column;
 
         &-item {
+          color: $secondary-color;
           padding: 10px 0;
           text-transform: uppercase;
           letter-spacing: 1px;
           font-size: 14px;
           cursor: pointer;
+          text-decoration: none;
 
           &:hover {
             color: $terciary-color;

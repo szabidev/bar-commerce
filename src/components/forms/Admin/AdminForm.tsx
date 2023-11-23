@@ -1,13 +1,14 @@
 import { FormEvent, useState, FC } from 'react';
-import { v4 as uuid } from 'uuid';
 
 import { ImageList, ImageListItem, Paper } from '@mui/material';
 import Container from '@mui/material/Container';
+import { v4 as uuid } from 'uuid';
 
 import { ShopItem } from '../../../types/products';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { addProduct, lastProductAdded, setAllProducts } from '../../../store';
+import { BASE_URL, path } from '../../../shared/ts/variables';
 
 const initialState = {
   class: '',
@@ -30,7 +31,6 @@ const AdminForm: FC<{ selectedItem: ShopItem; setIsDeleting: (x: boolean) => voi
   const store = useAppSelector((state) => state.productsDetail.products);
   const { allProducts } = store;
   const [productForm, setProductForm] = useState(initialState);
-  console.log(productForm);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -57,13 +57,19 @@ const AdminForm: FC<{ selectedItem: ShopItem; setIsDeleting: (x: boolean) => voi
 
   const submitHandler = async (product: ShopItem) => {
     // error handling
-    await fetch('https://bar-commerce-default-rtdb.firebaseio.com/items.json', {
+    await fetch(`${BASE_URL}${path.barstuff}`, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(product),
-    });
-    dispatch(addProduct(product));
-    dispatch(setAllProducts([...allProducts, product]));
-    dispatch(lastProductAdded(product));
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(addProduct(data));
+        dispatch(setAllProducts([...allProducts, data]));
+        dispatch(lastProductAdded(data));
+      });
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -98,7 +104,7 @@ const AdminForm: FC<{ selectedItem: ShopItem; setIsDeleting: (x: boolean) => voi
   };
 
   const handleDelete = async (id: string | number) => {
-    await fetch(`https://bar-commerce-default-rtdb.firebaseio.com/items/${id}.json`, {
+    await fetch(`${BASE_URL}${path.barstuff}/${id}`, {
       method: 'DELETE',
     });
   };

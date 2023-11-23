@@ -5,6 +5,7 @@ import { ShopItem } from './types/products';
 import { AppStore } from './store';
 import { setAllProducts, setProductsByType, setProductsByClass } from './store/slices/products';
 import { sortByClass } from './shared/ts/helpers';
+import { BASE_URL, path } from './shared/ts/variables';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -34,9 +35,8 @@ function App() {
   const coffeeGrinder = sortByClass(itemData, 'coffee grinder');
 
   useEffect(() => {
-    fetch('http://localhost:3000/barstuff')
+    fetch(`${BASE_URL}${path.barstuff}`)
       .then((res) => {
-        console.log(res, 'front');
         if (!res.ok) {
           throw new Error('Network response was not ok');
         }
@@ -49,8 +49,6 @@ function App() {
         console.error('Fetch error:', error);
       });
   }, []);
-
-  console.log(itemData);
 
   useEffect(() => {
     dispatch(setAllProducts(itemData));

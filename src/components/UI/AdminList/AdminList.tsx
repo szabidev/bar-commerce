@@ -1,9 +1,9 @@
-import { useAppSelector } from '../../../hooks/useAppSelector';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 
 import AdminListItem from '../AdminListItem';
+
+import { useAppSelector } from '../../../hooks/useAppSelector';
 import { ShopItem } from '../../../types/products';
-import { setAllProducts } from '../../../store';
 
 interface AdminListProps {
   selectProduct: (x: ShopItem) => void;
@@ -14,19 +14,8 @@ const AdminList: FC<AdminListProps> = ({ selectProduct, isDeleting }) => {
   const store = useAppSelector((state) => state.productsDetail);
   const { allProducts } = store.products;
 
-  useEffect(() => {
-    fetch('https://bar-commerce-default-rtdb.firebaseio.com/items.json')
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setAllProducts(data);
-      });
-  }, [isDeleting, allProducts]);
-
   const handleSelect = (product: ShopItem) => {
     selectProduct(product);
-    console.log(product);
   };
 
   return (

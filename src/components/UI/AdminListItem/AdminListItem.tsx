@@ -18,7 +18,7 @@ const AdminListItem: FC<AdminListItemProps> = ({ image, name, productClass, onSe
           </div>
           <div className="list__info">
             <p>{name}</p>
-            <p>{productClass}</p>
+            <p className="list__class">{productClass}</p>
           </div>
         </div>
       </Paper>
