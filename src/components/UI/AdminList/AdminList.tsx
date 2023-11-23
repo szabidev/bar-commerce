@@ -1,48 +1,37 @@
 import { useAppSelector } from '../../../hooks/useAppSelector';
-import { FC } from 'react';
-import styled from '@emotion/styled';
+import { FC, useEffect } from 'react';
 
 import AdminListItem from '../AdminListItem';
-import CloseIcon from '@mui/icons-material/Close';
 import { ShopItem } from '../../../types/products';
+import { setAllProducts } from '../../../store';
 
 interface AdminListProps {
-  showInventory: boolean;
-  setInventory: (x: boolean) => void;
   selectProduct: (x: ShopItem) => void;
+  isDeleting: boolean;
 }
 
-const AdminList: FC<AdminListProps> = ({ showInventory, setInventory, selectProduct }) => {
+const AdminList: FC<AdminListProps> = ({ selectProduct, isDeleting }) => {
   const store = useAppSelector((state) => state.productsDetail);
   const { allProducts } = store.products;
 
-  const StyledCloseIcon = styled(CloseIcon)({
-    fontSize: '46px',
-    position: 'absolute',
-    top: 0,
-    right: 10,
-    transition: 'all .6s ease',
-    cursor: 'pointer',
-
-    '&:hover': {
-      transform: 'rotate(90deg)',
-    },
-  });
-
-  const handleCancel = () => {
-    setInventory(false);
-  };
+  useEffect(() => {
+    fetch('https://bar-commerce-default-rtdb.firebaseio.com/items.json')
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setAllProducts(data);
+      });
+  }, [isDeleting, allProducts]);
 
   const handleSelect = (product: ShopItem) => {
     selectProduct(product);
     console.log(product);
-    handleCancel();
   };
 
   return (
-    <div className={`adminlist__container ${showInventory ? 'active' : ''}`}>
+    <div className={`adminlist__container`}>
       <div className="adminlist__action">
-        <StyledCloseIcon onClick={handleCancel} />
         <h3>Inventory</h3>
         <div className="filter">
           <button type="button">Filter</button>
@@ -52,6 +41,7 @@ const AdminList: FC<AdminListProps> = ({ showInventory, setInventory, selectProd
       <ul className="products__list">
         {allProducts.map((product) => (
           <AdminListItem
+            key={product.id}
             image={product.image}
             name={product.name}
             productClass={product.class}

@@ -34,14 +34,23 @@ function App() {
   const coffeeGrinder = sortByClass(itemData, 'coffee grinder');
 
   useEffect(() => {
-    fetch('https://bar-commerce-default-rtdb.firebaseio.com/items.json')
+    fetch('http://localhost:3000/barstuff')
       .then((res) => {
+        console.log(res, 'front');
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
         return res.json();
       })
       .then((data) => {
-        setItemData(Object.values(data));
+        setItemData(data);
+      })
+      .catch((error) => {
+        console.error('Fetch error:', error);
       });
   }, []);
+
+  console.log(itemData);
 
   useEffect(() => {
     dispatch(setAllProducts(itemData));

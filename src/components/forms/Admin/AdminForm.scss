@@ -60,6 +60,7 @@
   &--action {
     margin-top: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
@@ -90,12 +91,23 @@
         color: $success;
       }
     }
-  }
 
-  img {
-    width: 400px !important;
-    height: 400px !important;
-    object-fit: cover;
-    margin: 20px auto;
+    .delete {
+      background-color: $error;
+      color: $terciary-color;
+      &:hover {
+        background-color: $terciary-color;
+        color: $error;
+      }
+    }
+  }
+  .image__container {
+    margin-top: 50px;
+    img {
+      width: 400px !important;
+      height: 400px !important;
+      object-fit: cover;
+      margin: 20px auto;
+    }
   }
 }
