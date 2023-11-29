@@ -1,14 +1,13 @@
 import { FormEvent, useState, FC } from 'react';
 
-import { ImageList, ImageListItem, Paper } from '@mui/material';
 import Container from '@mui/material/Container';
-import { v4 as uuid } from 'uuid';
 
 import { ShopItem } from '../../../types/products';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { addProduct, lastProductAdded, setAllProducts } from '../../../store';
 import { BASE_URL, path } from '../../../shared/ts/variables';
+import { v4 as uuid } from 'uuid';
 
 const initialState = {
   class: '',
@@ -23,10 +22,17 @@ const initialState = {
   author: '',
 };
 
-const AdminForm: FC<{ selectedItem: ShopItem; setIsDeleting: (x: boolean) => void }> = ({
-  selectedItem,
-  setIsDeleting,
-}) => {
+const containerStyle = {
+  margin: '0',
+  padding: 0,
+  width: 'auto',
+  minHeight: '700px',
+};
+
+const AdminForm: FC<{
+  selectedItem: ShopItem | null;
+  setSelectedItem: (x: ShopItem | null) => void;
+}> = ({ selectedItem, setSelectedItem }) => {
   const dispatch = useAppDispatch();
   const store = useAppSelector((state) => state.productsDetail.products);
   const { allProducts } = store;
@@ -55,6 +61,54 @@ const AdminForm: FC<{ selectedItem: ShopItem; setIsDeleting: (x: boolean) => voi
     }
   };
 
+  const handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedType = event.target.value;
+
+    switch (selectedType) {
+      case 'barware':
+        setProductForm({
+          ...productForm,
+          type: 'barware',
+        });
+        break;
+      case 'machine':
+        setProductForm({
+          ...productForm,
+          type: 'barware',
+        });
+        break;
+      case 'glass':
+        setProductForm({
+          ...productForm,
+          type: 'barware',
+        });
+        break;
+      case 'book':
+        setProductForm({
+          ...productForm,
+          type: 'barware',
+        });
+        break;
+      case 'set':
+        setProductForm({
+          ...productForm,
+          type: 'barware',
+        });
+        break;
+      case 'knives':
+        setProductForm({
+          ...productForm,
+          type: 'barware',
+        });
+        break;
+      default:
+        setProductForm({
+          ...productForm,
+          type: 'barware',
+        });
+    }
+  };
+
   const submitHandler = async (product: ShopItem) => {
     // error handling
     await fetch(`${BASE_URL}${path.barstuff}`, {
@@ -72,48 +126,96 @@ const AdminForm: FC<{ selectedItem: ShopItem; setIsDeleting: (x: boolean) => voi
       });
   };
 
+  const editHandler = async (id: string, updatedProduct: ShopItem) => {
+    try {
+      const response = await fetch(`${BASE_URL}${path.barstuff}/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedProduct),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update product');
+      }
+
+      const updatedProducts = allProducts.map((product) =>
+        product.id === id ? updatedProduct : product,
+      );
+
+      dispatch(setAllProducts(updatedProducts));
+      // show a success message
+    } catch (error: any) {
+      console.error('Error updating product:', error.message);
+      // Handle error
+      // Show error message or take appropriate action
+    }
+  };
+  console.log(productForm);
+  console.log(selectedItem);
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const dataForPost = {
-      class: productForm.class,
-      description: productForm.description,
-      image: productForm.image,
-      isPromo: productForm.isPromo,
-      material: productForm.material,
-      name: productForm.name,
-      price: productForm.price,
-      quantity: productForm.quantity,
-      type: productForm.type,
-      author: productForm.author,
-      id: uuid(),
-    };
-    submitHandler(dataForPost);
-    setProductForm(initialState);
+
+    if (selectedItem) {
+      const dataForEdit = {
+        class: productForm.class || selectedItem.class,
+        description: productForm.description || selectedItem.description,
+        image: productForm.image || selectedItem.image,
+        isPromo: productForm.isPromo || selectedItem.isPromo,
+        material: productForm.material || selectedItem.material,
+        name: productForm.name || selectedItem.name,
+        price: productForm.price || selectedItem.price,
+        quantity: productForm.quantity || selectedItem.quantity,
+        type: productForm.type || selectedItem.type,
+        author: productForm.author || selectedItem.author,
+        id: selectedItem?.id,
+      };
+
+      editHandler(selectedItem.id as string, dataForEdit);
+      setProductForm(initialState);
+    } else {
+      const dataForPost = {
+        class: productForm.class,
+        description: productForm.description,
+        image: productForm.image,
+        isPromo: productForm.isPromo,
+        material: productForm.material,
+        name: productForm.name,
+        price: productForm.price,
+        quantity: productForm.quantity,
+        type: productForm.type,
+        author: productForm.author,
+        id: uuid(),
+      };
+
+      submitHandler(dataForPost);
+      setProductForm(initialState);
+    }
+
+    setSelectedItem(null);
   };
 
   const handleCancel = () => {
     setProductForm(initialState);
+    setSelectedItem(null);
   };
 
   const removeProduct = () => {
     if (selectedItem) {
       handleDelete(selectedItem.id as string | number);
     }
-    setProductForm(initialState);
-    setIsDeleting(true);
   };
 
   const handleDelete = async (id: string | number) => {
     await fetch(`${BASE_URL}${path.barstuff}/${id}`, {
       method: 'DELETE',
     });
-  };
-
-  const containerStyle = {
-    margin: '0',
-    padding: 0,
-    width: 'auto',
-    minHeight: '700px',
+    const updatedProducts = allProducts.filter((product) => product.id !== id);
+    dispatch(setAllProducts(updatedProducts));
+    setProductForm(initialState);
+    setSelectedItem(null);
   };
 
   return (
@@ -129,7 +231,7 @@ const AdminForm: FC<{ selectedItem: ShopItem; setIsDeleting: (x: boolean) => voi
                   name="class"
                   id="class"
                   onChange={handleInputChange}
-                  value={productForm.class || selectedItem.class}
+                  value={productForm.class || (selectedItem && selectedItem.class) || ''}
                 />
               </div>
               <div className="admin__form--control">
@@ -138,7 +240,9 @@ const AdminForm: FC<{ selectedItem: ShopItem; setIsDeleting: (x: boolean) => voi
                   type="text"
                   name="description"
                   onChange={handleInputChange}
-                  value={productForm.description || selectedItem.description}
+                  value={
+                    productForm.description || (selectedItem && selectedItem.description) || ''
+                  }
                   id="description"
                 />
               </div>
@@ -148,7 +252,7 @@ const AdminForm: FC<{ selectedItem: ShopItem; setIsDeleting: (x: boolean) => voi
                   type="text"
                   name="image"
                   onChange={handleInputChange}
-                  value={productForm.image || selectedItem.image}
+                  value={productForm.image || (selectedItem && selectedItem.image) || ''}
                   id="image"
                 />
               </div>
@@ -160,7 +264,11 @@ const AdminForm: FC<{ selectedItem: ShopItem; setIsDeleting: (x: boolean) => voi
                   name="isPromo"
                   id="isPromo"
                   defaultValue={`${
-                    productForm.isPromo ? 'yes' : 'no' || selectedItem.isPromo ? 'yes' : 'no'
+                    productForm.isPromo
+                      ? 'yes'
+                      : 'no' || (selectedItem && selectedItem.isPromo)
+                      ? 'yes'
+                      : 'no'
                   }`}
                 >
                   <option value="yes">Yes</option>
@@ -174,7 +282,7 @@ const AdminForm: FC<{ selectedItem: ShopItem; setIsDeleting: (x: boolean) => voi
                   name="material"
                   id="material"
                   onChange={handleInputChange}
-                  value={productForm.material || selectedItem.material}
+                  value={productForm.material || (selectedItem && selectedItem.material) || ''}
                 />
               </div>
             </div>
@@ -186,7 +294,7 @@ const AdminForm: FC<{ selectedItem: ShopItem; setIsDeleting: (x: boolean) => voi
                   name="name"
                   id="name"
                   onChange={handleInputChange}
-                  value={productForm.name || selectedItem.name}
+                  value={productForm.name || (selectedItem && selectedItem.name) || ''}
                 />
               </div>
               <div className="admin__form--control">
@@ -196,7 +304,7 @@ const AdminForm: FC<{ selectedItem: ShopItem; setIsDeleting: (x: boolean) => voi
                   name="price"
                   id="price"
                   onChange={handleInputChange}
-                  value={productForm.price || selectedItem.price}
+                  value={productForm.price || (selectedItem && selectedItem.price) || 0}
                 />
               </div>
               <div className="admin__form--control">
@@ -206,18 +314,25 @@ const AdminForm: FC<{ selectedItem: ShopItem; setIsDeleting: (x: boolean) => voi
                   name="quantity"
                   id="quantity"
                   onChange={handleInputChange}
-                  value={productForm.quantity || selectedItem.quantity}
+                  value={productForm.quantity || (selectedItem && selectedItem.quantity) || 0}
                 />
               </div>
               <div className="admin__form--control">
                 <label htmlFor="type">Type</label>
-                <input
-                  type="text"
+                <select
+                  className="dropdown"
                   name="type"
                   id="type"
-                  onChange={handleInputChange}
-                  value={productForm.type || selectedItem.type}
-                />
+                  onChange={handleTypeChange}
+                  value={productForm.type || (selectedItem && selectedItem.type) || ''}
+                >
+                  <option value="barware">Barware</option>
+                  <option value="machine">Machine</option>
+                  <option value="glass">Glass</option>
+                  <option value="book">Book</option>
+                  <option value="set">Set</option>
+                  <option value="knives">Knives</option>
+                </select>
               </div>
               <div className="admin__form--control">
                 <label htmlFor="author">Author</label>
@@ -226,14 +341,14 @@ const AdminForm: FC<{ selectedItem: ShopItem; setIsDeleting: (x: boolean) => voi
                   name="author"
                   id="author"
                   onChange={handleInputChange}
-                  value={productForm.author || selectedItem.author}
+                  value={productForm.author || (selectedItem && selectedItem.author) || ''}
                 />
               </div>
             </div>
           </div>
           <div className="admin__form--action">
             <button type="submit" className="save">
-              Add Product
+              {!selectedItem ? 'Add Product' : 'Edit Product'}
             </button>
             <button type="button" onClick={handleCancel}>
               Cancel
@@ -241,36 +356,6 @@ const AdminForm: FC<{ selectedItem: ShopItem; setIsDeleting: (x: boolean) => voi
             <button type="button" className="delete" onClick={removeProduct}>
               Delete
             </button>
-          </div>
-
-          <div className="image__container">
-            {productForm.image ||
-              (selectedItem.image && (
-                <Paper
-                  elevation={3}
-                  sx={{
-                    padding: '20px',
-                    textAlign: 'center',
-                    textTransform: 'uppercase',
-                    letterSpacing: '1px',
-                  }}
-                >
-                  <ImageList cols={1}>
-                    <ImageListItem>
-                      <img
-                        src={productForm.image || selectedItem.image}
-                        alt={productForm.name || selectedItem.name}
-                      />
-                      <h3>{productForm.name || selectedItem.name}</h3>
-                      <p>
-                        {productForm.type === 'book'
-                          ? productForm.author || selectedItem.author
-                          : productForm.material || selectedItem.material}
-                      </p>
-                    </ImageListItem>
-                  </ImageList>
-                </Paper>
-              ))}
           </div>
         </div>
       </form>

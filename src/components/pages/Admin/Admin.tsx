@@ -5,20 +5,7 @@ import { ShopItem } from '../../../types/products';
 import { Paper } from '@mui/material';
 
 const Admin = () => {
-  const [isDeleting, setIsDeleting] = useState<boolean>(false);
-  const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [selectedItem, setSelectedItem] = useState<ShopItem>({
-    class: '',
-    description: '',
-    image: '',
-    isPromo: '',
-    material: '',
-    name: '',
-    price: 0,
-    quantity: 0,
-    type: '',
-    author: '',
-  });
+  const [selectedItem, setSelectedItem] = useState<ShopItem | null>(null);
 
   const selectProduct = (product: ShopItem) => {
     setSelectedItem(product);
@@ -26,10 +13,10 @@ const Admin = () => {
 
   return (
     <div className="admin__container">
-      <AdminForm selectedItem={selectedItem} setIsDeleting={setIsDeleting} />
+      <AdminForm selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
 
       <Paper sx={{ maxHeight: '660px' }}>
-        <AdminList selectProduct={selectProduct} isDeleting={isDeleting} />
+        <AdminList selectProduct={selectProduct} />
       </Paper>
     </div>
   );

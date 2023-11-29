@@ -4,10 +4,12 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { userDetails } from './slices/user';
 import { productsDetail } from './slices/products';
+import { notifications } from './slices/notifications';
 
 const reducer = {
   userDetails,
   productsDetail,
+  notifications,
 };
 
 const store = configureStore({

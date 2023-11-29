@@ -28,7 +28,6 @@ const PromoField = () => {
 
   return (
     <div className="carousel__container">
-      {/* Check why arrow icons are not rendered */}
       <Carousel>
         {promoItemBackground.map((promoItem) => (
           <PromoItem

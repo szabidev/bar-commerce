@@ -7,10 +7,9 @@ import { ShopItem } from '../../../types/products';
 
 interface AdminListProps {
   selectProduct: (x: ShopItem) => void;
-  isDeleting: boolean;
 }
 
-const AdminList: FC<AdminListProps> = ({ selectProduct, isDeleting }) => {
+const AdminList: FC<AdminListProps> = ({ selectProduct }) => {
   const store = useAppSelector((state) => state.productsDetail);
   const { allProducts } = store.products;
 

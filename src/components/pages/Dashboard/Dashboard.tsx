@@ -2,13 +2,6 @@ import { Paper, Grid } from '@mui/material';
 import PromoField from '../../promo/PromoField/PromoField';
 import Featured from '../../featured/Featured';
 import PromotionCard from '../../card/PromotionCard';
-import { styled } from '@mui/system';
-
-const StyledGrid = styled(Grid)({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-});
 
 const Dashboard = () => {
   const highlighted = [
@@ -28,9 +21,9 @@ const Dashboard = () => {
     <div>
       <PromoField />
       <Featured />
-      <Grid container spacing={2} sx={{ margin: '50px 0' }}>
+      <Grid container spacing={2} sx={{ marginTop: '30px', marginBottom: '50px' }}>
         {highlighted.map((promotion) => (
-          <StyledGrid
+          <Grid
             key={promotion.title}
             item
             xs={12}
@@ -49,7 +42,7 @@ const Dashboard = () => {
                 description={promotion.description}
               />
             </Paper>
-          </StyledGrid>
+          </Grid>
         ))}
       </Grid>
     </div>
