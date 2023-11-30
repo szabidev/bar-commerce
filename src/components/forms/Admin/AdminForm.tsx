@@ -149,11 +149,8 @@ const AdminForm: FC<{
     } catch (error: any) {
       console.error('Error updating product:', error.message);
       // Handle error
-      // Show error message or take appropriate action
     }
   };
-  console.log(productForm);
-  console.log(selectedItem);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

@@ -17,6 +17,7 @@ export interface CardProps {
   description: string;
   image: string;
   price?: number;
+  onClick: () => void;
 }
 
 export interface Products {
@@ -39,21 +40,5 @@ export interface ProductsByType {
 }
 
 export interface ProductsByClass {
-  shaker: ShopItem[];
-  books: ShopItem[];
-  glass: ShopItem[];
-  machine: ShopItem[];
-  muddler: ShopItem[];
-  jigger: ShopItem[];
-  blender: ShopItem[];
-  strainer: ShopItem[];
-  set: ShopItem[];
-  juicer: ShopItem[];
-  mixingSpoon: ShopItem[];
-  shotGlass: ShopItem[];
-  margaritaMachine: ShopItem[];
-  beerGlass: ShopItem[];
-  sodaMaker: ShopItem[];
-  wineOpener: ShopItem[];
-  coffeeGrinder: ShopItem[];
+  [key: string]: ShopItem[];
 }

@@ -14,9 +14,9 @@ const StyledCard = styled(Card)({
   },
 });
 
-const FeaturedCard: FC<CardProps> = ({ image, title, description, price }) => {
+const FeaturedCard: FC<CardProps> = ({ image, title, description, price, onClick }) => {
   return (
-    <StyledCard sx={{ width: 230, cursor: 'pointer', padding: 1 }}>
+    <StyledCard sx={{ width: 230, cursor: 'pointer', padding: 1 }} onClick={onClick}>
       <CardMedia
         component="img"
         height="140"

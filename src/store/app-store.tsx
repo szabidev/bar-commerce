@@ -5,11 +5,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import { userDetails } from './slices/user';
 import { productsDetail } from './slices/products';
 import { notifications } from './slices/notifications';
+import { cartDetail } from './slices/cart';
 
 const reducer = {
   userDetails,
   productsDetail,
   notifications,
+  cartDetail,
 };
 
 const store = configureStore({

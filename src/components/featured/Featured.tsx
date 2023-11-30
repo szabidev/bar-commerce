@@ -1,10 +1,13 @@
 import FeaturedCard from '../card/FeaturedCard.tsx';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import { ShopItem } from '../../types/products.js';
+import { ShopItem } from '../../types/products';
 import Grid from '@mui/material/Grid';
 import './Featured.scss';
+import { useNavigate } from 'react-router-dom';
+import { BASE_URL, path } from '../../shared/ts/variables';
 
 const Featured = () => {
+  const navigate = useNavigate();
   const store = useAppSelector((state) => state.productsDetail);
   const { products } = store;
   const { allProducts } = products;
@@ -15,6 +18,10 @@ const Featured = () => {
       .slice(0, 5);
   };
   const randomItems = pickRandomItems(allProducts, 5);
+
+  const navigateToItem = (id: string) => {
+    navigate(`${BASE_URL}${path.barstuff}/${id}`);
+  };
 
   return (
     <div className="featured__container">
@@ -27,6 +34,7 @@ const Featured = () => {
               image={randomItem.image}
               description={randomItem.material}
               price={randomItem.price}
+              onClick={() => navigateToItem(randomItem.id as string)}
             />
           </Grid>
         ))}

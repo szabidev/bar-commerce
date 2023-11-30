@@ -65,25 +65,7 @@ const productsDetailSlice = createSlice({
       };
     },
     setProductsByClass(state, { payload }) {
-      state.products.productsByClass = {
-        shaker: payload.shaker,
-        books: payload.book,
-        glass: payload.glass,
-        machine: payload.machine,
-        muddler: payload.muddler,
-        jigger: payload.jigger,
-        blender: payload.blender,
-        strainer: payload.strainer,
-        set: payload.set,
-        juicer: payload.juicer,
-        mixingSpoon: payload.mixingSpoon,
-        shotGlass: payload.shotGlass,
-        margaritaMachine: payload.margaritaMachine,
-        beerGlass: payload.beerGlass,
-        sodaMaker: payload.sodaMaker,
-        wineOpener: payload.wineOpener,
-        coffeeGrinder: payload.coffeeGrinder,
-      };
+      state.products.productsByClass = { ...state.products.productsByClass, ...payload };
     },
     addProduct(state, { payload }: PayloadAction<ShopItem & { type: string }>) {
       const { type } = payload;

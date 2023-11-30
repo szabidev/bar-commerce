@@ -1,13 +1,14 @@
+import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import ProductCard from '../../card/ProductCard';
 import Container from '@mui/material/Container';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import { Paper, Grid } from '@mui/material';
 import { styled } from '@mui/system';
-import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 
-import { FC } from 'react';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { routes } from '../../../app-router';
-import { useNavigate } from 'react-router-dom';
-import ProductCard from '../../card/ProductCard';
 import { ShopItem } from '../../../types/products';
 
 const StyledGrid = styled(Grid)({
@@ -37,6 +38,9 @@ const ProductPage: FC<ProductPageProps> = ({ pageType, title }) => {
   const redirectToDashboard = () => {
     navigate(routes.DASHBOARD);
   };
+  // const handleNavigate = ()=> {
+  //   navigate()
+  // }
 
   return (
     <Container>
@@ -80,6 +84,7 @@ const ProductPage: FC<ProductPageProps> = ({ pageType, title }) => {
                 title={product.name}
                 description={product.material}
                 price={product.price}
+                onClick={() => console.log('need route')}
               />
             </Paper>
           </StyledGrid>

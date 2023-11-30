@@ -1,9 +1,9 @@
+import { FC, Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { FC, Suspense, lazy } from 'react';
 import Layout from '../components/UI/Layout';
-// import Dashboard from '../components/pages/Dashboard';
 import Loading from '../components/UI/Loading';
+
 import { routes } from './route';
 
 const About = lazy(() => import('../components/pages/About'));
@@ -43,7 +43,6 @@ export const AppRouter: FC = () => {
             <Route path={routes.TERMS} element={<Terms />} />
           </Routes>
         </Suspense>
-        {/* <Dashboard /> */}
       </Layout>
     </BrowserRouter>
   );
