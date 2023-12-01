@@ -10,12 +10,16 @@ const initialState: User = {
   isSignedIn: true,
   isAdmin: true,
   isRegistered: true,
+  searchTerm: '',
 };
 
 const userDetailsSlice = createSlice({
   name: 'userDetails',
   initialState,
   reducers: {
+    setSearchTerm(state, { payload }: PayloadAction<string>) {
+      state.searchTerm = payload;
+    },
     setUserState(state, action: PayloadAction<boolean>) {
       state.isSignedIn = action.payload;
     },
@@ -25,6 +29,6 @@ const userDetailsSlice = createSlice({
   },
 });
 
-export const { setUserState, setAdmin } = userDetailsSlice.actions;
+export const { setSearchTerm, setUserState, setAdmin } = userDetailsSlice.actions;
 
 export const userDetails = userDetailsSlice.reducer;

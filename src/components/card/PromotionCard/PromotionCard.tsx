@@ -1,11 +1,13 @@
 import { FC } from 'react';
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { useNavigate } from 'react-router-dom';
 
 interface PromotionCardProps {
   title: string;
   image: string;
   description: string;
+  route: string;
 }
 
 const cardStyle = {
@@ -14,7 +16,13 @@ const cardStyle = {
   border: '2px solid black',
 };
 
-const PromotionCard: FC<PromotionCardProps> = ({ title, image, description }) => {
+const PromotionCard: FC<PromotionCardProps> = ({ title, image, description, route }) => {
+  const navigate = useNavigate();
+
+  const handleRedirect = () => {
+    navigate(route);
+  };
+
   return (
     <Card sx={cardStyle}>
       <CardMedia
@@ -37,7 +45,7 @@ const PromotionCard: FC<PromotionCardProps> = ({ title, image, description }) =>
           {description}
         </Typography>
         <CardActions sx={{ padding: '20px 0' }}>
-          <Button>
+          <Button onClick={handleRedirect}>
             <p className="cta__text">Shop Now</p>
             <ArrowForwardIcon sx={{ color: '#020912' }} />
           </Button>

@@ -12,7 +12,7 @@ const StyledCard = styled(Card)({
   boxShadow: '0px 0px 23px 2px rgba(0,0,0,0.20)',
 });
 
-const ProductCard: FC<CardProps> = ({ image, title, description, price }) => {
+const ProductCard: FC<CardProps> = ({ image, title, description, price, onClick }) => {
   return (
     <StyledCard sx={{ width: 250, cursor: 'pointer', padding: 0, border: '1px solid #020912' }}>
       <CardMedia
@@ -39,7 +39,9 @@ const ProductCard: FC<CardProps> = ({ image, title, description, price }) => {
         </Typography>
       </CardContent>
       <div className="product__cta">
-        <button className="add__to__cart">Add to cart</button>
+        <button className="add__to__cart" onClick={onClick}>
+          Add to cart
+        </button>
       </div>
     </StyledCard>
   );

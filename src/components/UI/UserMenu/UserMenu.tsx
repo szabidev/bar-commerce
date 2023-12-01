@@ -13,12 +13,15 @@ import Register from '../../forms/Register';
 import { Link } from 'react-router-dom';
 import { routes } from '../../../app-router';
 import { useAppSelector } from '../../../hooks/useAppSelector';
+import CartCounter from '../CartCounter';
 
 const UserMenu: FC = () => {
-  const store = useAppSelector((state) => state.userDetails);
-  const { isSignedIn, isRegistered, isAdmin } = store;
+  const store = useAppSelector((state) => state);
+  const { isSignedIn, isRegistered, isAdmin } = store.userDetails;
+  const { totalItems } = store.cartDetail;
   const [showLogin, setShowLogin] = useState<boolean>(false);
   const [showRegister, setShowRegister] = useState<boolean>(false);
+
   const handleLoginPopup = () => {
     setShowLogin(true);
   };
@@ -56,7 +59,10 @@ const UserMenu: FC = () => {
       {isSignedIn && !isAdmin && (
         <>
           <Tooltip title="Shopping cart">
-            <ShoppingCartIcon htmlColor="white" cursor="pointer" />
+            <Link to={routes.CART}>
+              <ShoppingCartIcon htmlColor="white" cursor="pointer" />
+              {totalItems !== 0 && <CartCounter />}
+            </Link>
           </Tooltip>
           <Tooltip title="Log out">
             <LogoutIcon htmlColor="white" cursor="pointer" />
@@ -73,6 +79,7 @@ const UserMenu: FC = () => {
           <Tooltip title="Shopping cart">
             <Link to={routes.CART}>
               <ShoppingCartIcon htmlColor="white" cursor="pointer" />
+              {totalItems !== 0 && <CartCounter />}
             </Link>
           </Tooltip>
           <Tooltip title="Log out">
@@ -89,7 +96,10 @@ const UserMenu: FC = () => {
             </>
           </Tooltip>
           <Tooltip title="Shopping cart">
-            <ShoppingCartIcon htmlColor="white" cursor="pointer" />
+            <Link to={routes.CART}>
+              <ShoppingCartIcon htmlColor="white" cursor="pointer" />
+              {totalItems !== 0 && <CartCounter />}
+            </Link>
           </Tooltip>
         </>
       )}
@@ -102,7 +112,10 @@ const UserMenu: FC = () => {
             </>
           </Tooltip>
           <Tooltip title="Shopping cart">
-            <ShoppingCartIcon htmlColor="white" cursor="pointer" />
+            <Link to={routes.CART}>
+              <ShoppingCartIcon htmlColor="white" cursor="pointer" />
+              {totalItems !== 0 && <CartCounter />}
+            </Link>
           </Tooltip>
         </>
       )}

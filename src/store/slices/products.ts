@@ -11,6 +11,7 @@ const initialState: Products = {
       glass: [],
       set: [],
       knives: [],
+      jiggers: [],
     },
     productsByClass: {
       shaker: [],
@@ -62,6 +63,7 @@ const productsDetailSlice = createSlice({
         book: payload.book,
         set: payload.set,
         knives: payload.knives,
+        jiggers: payload.jiggers,
       };
     },
     setProductsByClass(state, { payload }) {

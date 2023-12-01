@@ -14,8 +14,9 @@ function App() {
   const machineProducts = itemData.filter((machine) => machine.type === 'machine');
   const bookProducts = itemData.filter((book) => book.type === 'book');
   const glassProducts = itemData.filter((glass) => glass.type === 'glass');
+  const jiggerProducts = itemData.filter((jigger) => jigger.type === 'jiggers');
+  const knifeProducts = itemData.filter((knives) => knives.type === 'knives');
   const setProducts = itemData.filter((set) => set.class === 'set');
-  const knifeProducts = itemData.filter((set) => set.class === 'knives');
   const shaker = sortByClass(itemData, 'shaker');
   const books = sortByClass(itemData, 'book');
   const glass = sortByClass(itemData, 'glass');
@@ -60,6 +61,7 @@ function App() {
         book: bookProducts,
         set: setProducts,
         knives: knifeProducts,
+        jigger: jiggerProducts,
       }),
     );
     dispatch(
@@ -89,6 +91,7 @@ function App() {
     bookProducts,
     glassProducts,
     knifeProducts,
+    jiggerProducts,
     setProducts,
     itemData,
     dispatch,

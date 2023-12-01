@@ -10,13 +10,17 @@ import Logo from '../Logo';
 import Modal from '../Modal';
 import SearchInput from '../../forms/SearchInput';
 import UserMenu from '../UserMenu/UserMenu';
+import { setSearchTerm } from '../../../store';
+import { useAppDispatch } from '../../../hooks/useAppDispatch';
 
 const Header: FC = () => {
+  const dispatch = useAppDispatch();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const handlePopup = () => {
-    console.log('search');
     setIsModalOpen(!isModalOpen);
+    // not the most optimal
+    dispatch(setSearchTerm(''));
   };
 
   const onClose = () => {

@@ -7,4 +7,5 @@ export default interface User {
   isSignedIn: boolean;
   isAdmin: boolean;
   isRegistered: boolean;
+  searchTerm: string;
 }

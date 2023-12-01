@@ -10,6 +10,7 @@ export interface ShopItem {
   quantity: number;
   type: string;
   author: string;
+  totalAmount?: number;
 }
 
 export interface CardProps {
@@ -37,6 +38,7 @@ export interface ProductsByType {
   glass: ShopItem[];
   set: ShopItem[];
   knives: ShopItem[];
+  jiggers: ShopItem[];
 }
 
 export interface ProductsByClass {
