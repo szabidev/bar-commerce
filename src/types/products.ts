@@ -14,11 +14,8 @@ export interface ShopItem {
 }
 
 export interface CardProps {
-  title: string;
-  description: string;
-  image: string;
-  price?: number;
-  onClick: () => void;
+  product: ShopItem;
+  onClick: any;
 }
 
 export interface Products {

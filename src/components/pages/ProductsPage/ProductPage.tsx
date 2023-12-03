@@ -80,10 +80,7 @@ const ProductPage: FC<ProductPageProps> = ({ pageType, title }) => {
             <Paper key={product.id} sx={{ padding: 0 }}>
               <ProductCard
                 key={product.id}
-                image={product.image}
-                title={product.name}
-                description={product.material}
-                price={product.price}
+                product={product}
                 onClick={() => console.log('need route')}
               />
             </Paper>

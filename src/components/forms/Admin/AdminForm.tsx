@@ -329,6 +329,7 @@ const AdminForm: FC<{
                   <option value="book">Book</option>
                   <option value="set">Set</option>
                   <option value="knives">Knives</option>
+                  <option value="knives">Jiggers</option>
                 </select>
               </div>
               <div className="admin__form--control">

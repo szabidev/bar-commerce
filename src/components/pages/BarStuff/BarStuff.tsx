@@ -4,9 +4,10 @@ import { styled } from '@mui/system';
 import ProductCard from '../../card/ProductCard';
 
 import { useAppSelector } from '../../../hooks/useAppSelector';
-import { useAppDispatch } from '../../../hooks/useAppDispatch';
+// import { showSingleItem } from '../../../shared/ts/helpers';
 import { ShopItem } from '../../../types/products';
-import { addProductToCart } from '../../../store';
+import { useNavigate } from 'react-router-dom';
+import { path } from '../../../shared/ts/variables';
 
 const StyledGrid = styled(Grid)({
   display: 'flex',
@@ -15,7 +16,7 @@ const StyledGrid = styled(Grid)({
 });
 
 const BarStuff = () => {
-  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const store = useAppSelector((state) => state);
   const { searchTerm } = store.userDetails;
   const { allProducts } = store.productsDetail.products;
@@ -28,8 +29,8 @@ const BarStuff = () => {
       item.material.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
-  const addToCart = (item: ShopItem) => {
-    dispatch(addProductToCart(item));
+  const handleNavigate = (id: string | number) => {
+    navigate(`${path.barstuff}/${id}`);
   };
 
   return (
@@ -66,11 +67,8 @@ const BarStuff = () => {
                   <Paper key={product.id} sx={{ padding: 0 }}>
                     <ProductCard
                       key={product.id}
-                      image={product.image}
-                      title={product.name}
-                      description={product.material}
-                      price={product.price}
-                      onClick={() => addToCart(product)}
+                      product={product}
+                      onClick={() => handleNavigate(product.id!)}
                     />
                   </Paper>
                 </StyledGrid>

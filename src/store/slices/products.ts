@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Products, ShopItem } from '../../types/products';
+import { Products, ProductsByClass, ProductsByType, ShopItem } from '../../types/products';
 
 const initialState: Products = {
   products: {
@@ -55,7 +55,7 @@ const productsDetailSlice = createSlice({
     setAllProducts(state, action: PayloadAction<ShopItem[]>) {
       state.products.allProducts = action.payload;
     },
-    setProductsByType(state, { payload }) {
+    setProductsByType(state, { payload }: PayloadAction<ProductsByType>) {
       state.products.productsByType = {
         barware: payload.barware,
         machine: payload.machine,
@@ -66,7 +66,7 @@ const productsDetailSlice = createSlice({
         jiggers: payload.jiggers,
       };
     },
-    setProductsByClass(state, { payload }) {
+    setProductsByClass(state, { payload }: PayloadAction<ProductsByClass>) {
       state.products.productsByClass = { ...state.products.productsByClass, ...payload };
     },
     addProduct(state, { payload }: PayloadAction<ShopItem & { type: string }>) {

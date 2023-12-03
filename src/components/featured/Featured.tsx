@@ -30,10 +30,7 @@ const Featured = () => {
         {randomItems.map((randomItem) => (
           <Grid key={randomItem.id} item xs={10} sm={6} md={4} lg={2}>
             <FeaturedCard
-              title={randomItem.name}
-              image={randomItem.image}
-              description={randomItem.material}
-              price={randomItem.price}
+              product={randomItem}
               onClick={() => navigateToItem(randomItem.id as string)}
             />
           </Grid>

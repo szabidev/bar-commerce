@@ -5,6 +5,7 @@ import Layout from '../components/UI/Layout';
 import Loading from '../components/UI/Loading';
 
 import { routes } from './route';
+import SingleProductPage from '../components/pages/SingleProductPage';
 
 const About = lazy(() => import('../components/pages/About'));
 const Admin = lazy(() => import('../components/pages/Admin'));
@@ -33,7 +34,8 @@ export const AppRouter: FC = () => {
             <Route path={routes.DASHBOARD} element={<Dashboard />} />
             <Route path={routes.ABOUT} element={<About />} />
             <Route path={routes.ADMIN} element={<Admin />} />
-            <Route path={routes.BARSTUFF} element={<BarStuff />} />
+            <Route path={routes.BARSTUFF} element={<BarStuff />}></Route>
+            <Route path={`${routes.BARSTUFF}/:id`} element={<SingleProductPage />} />
             <Route path={routes.BARWARE} element={<Barware />} />
             <Route path={routes.BOOKS} element={<Books />} />
             <Route path={routes.CART} element={<Cart />} />

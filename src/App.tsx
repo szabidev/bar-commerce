@@ -61,7 +61,7 @@ function App() {
         book: bookProducts,
         set: setProducts,
         knives: knifeProducts,
-        jigger: jiggerProducts,
+        jiggers: jiggerProducts,
       }),
     );
     dispatch(
