@@ -1,5 +1,6 @@
 import { ChangeEvent, FC, useState } from 'react';
-import './Login.scss'; // why I have to import it here?
+
+import './Login.scss';
 
 const Login: FC<{ onClose: () => void }> = ({ onClose }) => {
   const [loginAddress, setLoginAddress] = useState<string>('');
@@ -21,11 +22,25 @@ const Login: FC<{ onClose: () => void }> = ({ onClose }) => {
       <div className="login__form--group">
         <div className="login__form--control">
           <label htmlFor="email">E-mail</label>
-          <input type="text" placeholder="Enter email address" id="email" name="email" onChange={handleLoginChange} value={loginAddress} />
+          <input
+            type="text"
+            placeholder="Enter email address"
+            id="email"
+            name="email"
+            onChange={handleLoginChange}
+            value={loginAddress}
+          />
         </div>
         <div className="login__form--control">
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="Enter password" onChange={handlePasswordChange} value={loginPassword} />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter password"
+            onChange={handlePasswordChange}
+            value={loginPassword}
+          />
         </div>
       </div>
       <div className="login__form--action">

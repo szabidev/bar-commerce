@@ -2,10 +2,10 @@ import { FormEvent, useState, FC } from 'react';
 
 import Container from '@mui/material/Container';
 
-import { ShopItem } from '../../../types/products';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { addProduct, lastProductAdded, setAllProducts } from '../../../store';
+import { ShopItem } from '../../../types/products';
 import { BASE_URL, path } from '../../../shared/ts/variables';
 import { v4 as uuid } from 'uuid';
 
@@ -74,31 +74,31 @@ const AdminForm: FC<{
       case 'machine':
         setProductForm({
           ...productForm,
-          type: 'barware',
+          type: 'machine',
         });
         break;
       case 'glass':
         setProductForm({
           ...productForm,
-          type: 'barware',
+          type: 'glass',
         });
         break;
       case 'book':
         setProductForm({
           ...productForm,
-          type: 'barware',
+          type: 'book',
         });
         break;
       case 'set':
         setProductForm({
           ...productForm,
-          type: 'barware',
+          type: 'set',
         });
         break;
       case 'knives':
         setProductForm({
           ...productForm,
-          type: 'barware',
+          type: 'knives',
         });
         break;
       default:

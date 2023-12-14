@@ -1,15 +1,16 @@
 import { FC, useState } from 'react';
-import { routes } from '../../../app-router';
+import { Link } from 'react-router-dom';
 
 import SearchIcon from '@mui/icons-material/Search';
 import Tooltip from '@mui/material/Tooltip';
-import { Link } from 'react-router-dom';
-import { styled } from '@mui/system';
 
 import Logo from '../Logo';
 import Modal from '../Modal';
 import SearchInput from '../../forms/SearchInput';
 import UserMenu from '../UserMenu/UserMenu';
+
+import { styled } from '@mui/system';
+import { routes } from '../../../app-router';
 import { setSearchTerm } from '../../../store';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 
@@ -19,7 +20,7 @@ const Header: FC = () => {
 
   const handlePopup = () => {
     setIsModalOpen(!isModalOpen);
-    // not the most optimal
+
     dispatch(setSearchTerm(''));
   };
 
@@ -78,8 +79,6 @@ const Header: FC = () => {
             <StyledLink to={routes.SETS} className="header__menu--secondary__items">
               Sets & kits
             </StyledLink>
-            {/* Add hover effect on elements */}
-            {/* menu items some with dropdwon menu with routes */}
           </div>
         </div>
       </header>

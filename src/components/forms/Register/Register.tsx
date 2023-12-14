@@ -1,7 +1,11 @@
 import { FC } from 'react';
+
 import Link from '@mui/material/Link';
 
-const Register: FC<{ onClose: () => void; setShowLogin: (x: boolean) => void }> = ({ onClose, setShowLogin }) => {
+const Register: FC<{ onClose: () => void; setShowLogin: (x: boolean) => void }> = ({
+  onClose,
+  setShowLogin,
+}) => {
   const linkStyle = {
     color: 'rgb(255,255,255)',
     letterSpacing: '1px',
@@ -26,11 +30,23 @@ const Register: FC<{ onClose: () => void; setShowLogin: (x: boolean) => void }> 
         </div>
         <div className="register__form--control">
           <label htmlFor="email">E-mail</label>
-          <input type="text" placeholder="Enter email address" id="email" name="email" autoComplete="off" />
+          <input
+            type="text"
+            placeholder="Enter email address"
+            id="email"
+            name="email"
+            autoComplete="off"
+          />
         </div>
         <div className="register__form--control">
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="Enter password" autoComplete="off" />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter password"
+            autoComplete="off"
+          />
         </div>
         <div className="register__form--special">
           <p className="login__action" onClick={redirectToLogin}>

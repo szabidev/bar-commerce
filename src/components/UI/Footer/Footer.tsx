@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
+
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+
 import { routes } from '../../../app-router';
-import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (

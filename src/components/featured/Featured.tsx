@@ -1,9 +1,12 @@
+import { useNavigate } from 'react-router-dom';
+
+import Grid from '@mui/material/Grid';
+
 import FeaturedCard from '../card/FeaturedCard.tsx';
+
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { ShopItem } from '../../types/products';
-import Grid from '@mui/material/Grid';
 import './Featured.scss';
-import { useNavigate } from 'react-router-dom';
 import { path } from '../../shared/ts/variables';
 
 const Featured = () => {
@@ -18,10 +21,6 @@ const Featured = () => {
       .slice(0, 5);
   };
   const randomItems = pickRandomItems(allProducts, 5);
-
-  // const navigateToItem = (id: string) => {
-  //   navigate(`${path.barstuff}/${id}`);
-  // };
 
   const handleNavigate = (id: string | number) => {
     const selectedProduct = randomItems.find((product: ShopItem) => product.id === id);

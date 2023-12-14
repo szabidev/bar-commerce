@@ -1,7 +1,8 @@
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { useNavigate } from 'react-router-dom';
 
 interface PromotionCardProps {
   title: string;

@@ -1,8 +1,10 @@
+import { FC } from 'react';
+
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { FC } from 'react';
+
 import { styled } from '@mui/system';
 import { CardProps } from '../../../types/products';
 

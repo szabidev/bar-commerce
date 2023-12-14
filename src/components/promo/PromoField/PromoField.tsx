@@ -1,6 +1,8 @@
 import Carousel from 'react-material-ui-carousel';
+
 import PromoItem from '../PromoItem';
 import './PromoField.scss';
+
 import { routes } from '../../../app-router';
 
 const PromoField = () => {

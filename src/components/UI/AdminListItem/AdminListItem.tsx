@@ -1,5 +1,6 @@
-import { Paper } from '@mui/material';
 import { FC } from 'react';
+
+import { Paper } from '@mui/material';
 
 interface AdminListItemProps {
   name: string;

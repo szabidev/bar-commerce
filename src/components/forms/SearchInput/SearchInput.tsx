@@ -6,9 +6,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import Tooltip from '@mui/material/Tooltip';
 
 import { useAppSelector } from '../../../hooks/useAppSelector';
-import { setSearchTerm } from '../../../store';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { routes } from '../../../app-router';
+import { setSearchTerm } from '../../../store';
 
 const SearchInput: FC<{ onClose: () => void }> = ({ onClose }) => {
   const navigate = useNavigate();

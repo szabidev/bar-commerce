@@ -1,5 +1,6 @@
-import LiquorIcon from '@mui/icons-material/Liquor';
 import { useNavigate } from 'react-router-dom';
+
+import LiquorIcon from '@mui/icons-material/Liquor';
 
 const Logo = () => {
   const navigate = useNavigate();

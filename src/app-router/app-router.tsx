@@ -3,9 +3,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Layout from '../components/UI/Layout';
 import Loading from '../components/UI/Loading';
+import SingleProductPage from '../components/pages/SingleProductPage';
 
 import { routes } from './route';
-import SingleProductPage from '../components/pages/SingleProductPage';
 
 const About = lazy(() => import('../components/pages/About'));
 const Admin = lazy(() => import('../components/pages/Admin'));

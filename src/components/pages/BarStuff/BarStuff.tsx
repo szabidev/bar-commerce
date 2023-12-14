@@ -1,12 +1,12 @@
+import { useNavigate } from 'react-router-dom';
+
 import { Grid, Paper } from '@mui/material';
 import { styled } from '@mui/system';
 
 import ProductCard from '../../card/ProductCard';
 
 import { useAppSelector } from '../../../hooks/useAppSelector';
-// import { showSingleItem } from '../../../shared/ts/helpers';
 import { ShopItem } from '../../../types/products';
-import { useNavigate } from 'react-router-dom';
 import { path } from '../../../shared/ts/variables';
 
 const StyledGrid = styled(Grid)({

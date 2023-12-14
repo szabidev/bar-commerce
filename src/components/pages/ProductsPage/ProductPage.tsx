@@ -1,12 +1,13 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import ProductCard from '../../card/ProductCard';
 import Container from '@mui/material/Container';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import { Paper, Grid } from '@mui/material';
-import { styled } from '@mui/system';
 
+import ProductCard from '../../card/ProductCard';
+
+import { styled } from '@mui/system';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { routes } from '../../../app-router';
 import { ShopItem } from '../../../types/products';
@@ -39,9 +40,6 @@ const ProductPage: FC<ProductPageProps> = ({ pageType, title }) => {
   const redirectToDashboard = () => {
     navigate(routes.DASHBOARD);
   };
-  // const handleNavigate = (id: string | number) => {
-  //   navigate(`${path.barstuff}/${id}`);
-  // };
 
   const handleNavigate = (id: string | number) => {
     const selectedProduct = productsByType[pageType as keyof typeof productsByType].find(

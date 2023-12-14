@@ -1,8 +1,11 @@
 import { useState } from 'react';
+
+import { Paper } from '@mui/material';
+
 import AdminForm from '../../forms/Admin';
 import AdminList from '../../UI/AdminList';
+
 import { ShopItem } from '../../../types/products';
-import { Paper } from '@mui/material';
 
 const Admin = () => {
   const [selectedItem, setSelectedItem] = useState<ShopItem | null>(null);

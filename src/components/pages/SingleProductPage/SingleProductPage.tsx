@@ -1,6 +1,8 @@
 import { useLocation } from 'react-router-dom';
-import Counter from '../../UI/Counter';
+
 import { CardMedia } from '@mui/material';
+
+import Counter from '../../UI/Counter';
 
 const SingleProductPage = () => {
   const location = useLocation();
