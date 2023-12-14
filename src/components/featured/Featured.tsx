@@ -4,7 +4,7 @@ import { ShopItem } from '../../types/products';
 import Grid from '@mui/material/Grid';
 import './Featured.scss';
 import { useNavigate } from 'react-router-dom';
-import { BASE_URL, path } from '../../shared/ts/variables';
+import { path } from '../../shared/ts/variables';
 
 const Featured = () => {
   const navigate = useNavigate();
@@ -19,8 +19,18 @@ const Featured = () => {
   };
   const randomItems = pickRandomItems(allProducts, 5);
 
-  const navigateToItem = (id: string) => {
-    navigate(`${BASE_URL}${path.barstuff}/${id}`);
+  // const navigateToItem = (id: string) => {
+  //   navigate(`${path.barstuff}/${id}`);
+  // };
+
+  const handleNavigate = (id: string | number) => {
+    const selectedProduct = randomItems.find((product: ShopItem) => product.id === id);
+
+    if (selectedProduct) {
+      navigate(`${path.barstuff}/${id}`, { state: { product: selectedProduct } });
+    } else {
+      // Handle error or not found scenario
+    }
   };
 
   return (
@@ -29,10 +39,7 @@ const Featured = () => {
       <Grid columns={10} container spacing={2}>
         {randomItems.map((randomItem) => (
           <Grid key={randomItem.id} item xs={10} sm={6} md={4} lg={2}>
-            <FeaturedCard
-              product={randomItem}
-              onClick={() => navigateToItem(randomItem.id as string)}
-            />
+            <FeaturedCard product={randomItem} onClick={() => handleNavigate(randomItem.id!)} />
           </Grid>
         ))}
       </Grid>

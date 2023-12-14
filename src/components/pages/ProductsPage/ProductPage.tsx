@@ -10,6 +10,7 @@ import { styled } from '@mui/system';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { routes } from '../../../app-router';
 import { ShopItem } from '../../../types/products';
+import { path } from '../../../shared/ts/variables';
 
 const StyledGrid = styled(Grid)({
   display: 'flex',
@@ -38,9 +39,21 @@ const ProductPage: FC<ProductPageProps> = ({ pageType, title }) => {
   const redirectToDashboard = () => {
     navigate(routes.DASHBOARD);
   };
-  // const handleNavigate = ()=> {
-  //   navigate()
-  // }
+  // const handleNavigate = (id: string | number) => {
+  //   navigate(`${path.barstuff}/${id}`);
+  // };
+
+  const handleNavigate = (id: string | number) => {
+    const selectedProduct = productsByType[pageType as keyof typeof productsByType].find(
+      (product: ShopItem) => product.id === id,
+    );
+
+    if (selectedProduct) {
+      navigate(`${path.barstuff}/${id}`, { state: { product: selectedProduct } });
+    } else {
+      // Handle error or not found scenario
+    }
+  };
 
   return (
     <Container>
@@ -81,7 +94,7 @@ const ProductPage: FC<ProductPageProps> = ({ pageType, title }) => {
               <ProductCard
                 key={product.id}
                 product={product}
-                onClick={() => console.log('need route')}
+                onClick={() => handleNavigate(product.id!)}
               />
             </Paper>
           </StyledGrid>

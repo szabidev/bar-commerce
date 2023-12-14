@@ -1,11 +1,11 @@
 import { FC, useState } from 'react';
 
 import AdminListItem from '../AdminListItem';
+import Filter from '../../forms/Filter';
 import Modal from '../Modal';
 
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { ShopItem } from '../../../types/products';
-import Filter from '../../forms/Filter';
 
 interface AdminListProps {
   selectProduct: (x: ShopItem) => void;

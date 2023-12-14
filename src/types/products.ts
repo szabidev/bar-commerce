@@ -1,7 +1,7 @@
 export interface ShopItem {
   class: string;
   description: string;
-  id?: number | string;
+  id?: string;
   image: string;
   isPromo: boolean | string;
   material: string;

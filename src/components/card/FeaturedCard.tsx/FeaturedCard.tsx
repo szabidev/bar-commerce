@@ -15,7 +15,7 @@ const StyledCard = styled(Card)({
 });
 
 const FeaturedCard: FC<CardProps> = ({ product, onClick }) => {
-  const { image, name, description, price } = product;
+  const { image, name, material, price } = product;
   return (
     <StyledCard sx={{ width: 230, cursor: 'pointer', padding: 1 }} onClick={onClick}>
       <CardMedia
@@ -35,7 +35,7 @@ const FeaturedCard: FC<CardProps> = ({ product, onClick }) => {
           {name}
         </Typography>
         <Typography variant="body2" sx={{ fontSize: 16, textAlign: 'center' }}>
-          {description}
+          {material}
         </Typography>
         <Typography variant="body1" sx={{ fontSize: 20, textAlign: 'center' }}>
           ${price} USD

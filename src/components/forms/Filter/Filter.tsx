@@ -22,8 +22,8 @@ const Filter = () => {
       [itemKey]: !prevSelected[itemKey],
     }));
 
-    const filteredItems = allProducts.filter((product: ShopItem) =>
-      console.log(product[itemKey as keyof ShopItem]),
+    const filteredItems = allProducts.filter(
+      (product: ShopItem) => product[itemKey as keyof ShopItem],
     );
     setSelectedProducts(filteredItems);
   };
@@ -51,8 +51,6 @@ const Filter = () => {
   };
 
   const filteredProducts = searchTerm && findMatchingProducts(searchTerm);
-  console.log(selectedProducts);
-  console.log(filteredProducts);
 
   const byType = Object.keys(productsByType).map((type) => (
     <p

@@ -20,7 +20,6 @@ const SearchInput: FC<{ onClose: () => void }> = ({ onClose }) => {
     event.preventDefault();
     navigate(routes.BARSTUFF);
     onClose();
-    console.log(searchTerm);
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

@@ -30,7 +30,13 @@ const BarStuff = () => {
   );
 
   const handleNavigate = (id: string | number) => {
-    navigate(`${path.barstuff}/${id}`);
+    const selectedProduct = filteredItems.find((product: ShopItem) => product.id === id);
+
+    if (selectedProduct) {
+      navigate(`${path.barstuff}/${id}`, { state: { product: selectedProduct } });
+    } else {
+      // Handle error or not found scenario
+    }
   };
 
   return (
