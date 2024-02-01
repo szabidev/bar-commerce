@@ -17,7 +17,6 @@ const Admin = () => {
   return (
     <div className="admin__container">
       <AdminForm selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
-
       <Paper sx={{ maxHeight: '660px' }}>
         <AdminList selectProduct={selectProduct} />
       </Paper>

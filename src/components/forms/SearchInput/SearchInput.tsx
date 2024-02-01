@@ -10,7 +10,11 @@ import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { routes } from '../../../app-router';
 import { setSearchTerm } from '../../../store';
 
-const SearchInput: FC<{ onClose: () => void }> = ({ onClose }) => {
+interface SearchInputProps {
+  onClose: () => void;
+}
+
+const SearchInput = ({ onClose }: SearchInputProps) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const store = useAppSelector((state) => state.userDetails);

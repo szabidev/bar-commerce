@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface PromoItemProps {
@@ -8,12 +7,7 @@ interface PromoItemProps {
   route: string;
 }
 
-const PromoItem: FC<PromoItemProps> = ({
-  background,
-  route,
-  promotionDescription,
-  promotionTitle,
-}) => {
+const PromoItem = ({ background, route, promotionDescription, promotionTitle }: PromoItemProps) => {
   const navigate = useNavigate();
 
   const handleRedirect = () => {

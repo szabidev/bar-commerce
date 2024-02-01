@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import SearchIcon from '@mui/icons-material/Search';
@@ -14,7 +14,7 @@ import { routes } from '../../../app-router';
 import { setSearchTerm } from '../../../store';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 
-const Header: FC = () => {
+const Header = () => {
   const dispatch = useAppDispatch();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 

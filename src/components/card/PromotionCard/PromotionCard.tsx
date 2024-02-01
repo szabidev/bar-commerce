@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
@@ -17,7 +16,7 @@ const cardStyle = {
   border: '2px solid black',
 };
 
-const PromotionCard: FC<PromotionCardProps> = ({ title, image, description, route }) => {
+const PromotionCard = ({ title, image, description, route }: PromotionCardProps) => {
   const navigate = useNavigate();
 
   const handleRedirect = () => {

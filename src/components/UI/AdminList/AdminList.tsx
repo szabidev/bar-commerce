@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 
 import AdminListItem from '../AdminListItem';
 import Filter from '../../forms/Filter';
@@ -11,10 +11,12 @@ interface AdminListProps {
   selectProduct: (x: ShopItem) => void;
 }
 
-const AdminList: FC<AdminListProps> = ({ selectProduct }) => {
+const AdminList = ({ selectProduct }: AdminListProps) => {
   const store = useAppSelector((state) => state.productsDetail);
   const { allProducts } = store.products;
   const [showFilter, setShowFilter] = useState<boolean>(false);
+  const [filteredData, setFilteredData] = useState<ShopItem[] | undefined | string>([]);
+  console.log('🚀 ~ filteredData:', filteredData);
 
   const handleSelect = (product: ShopItem) => {
     selectProduct(product);
@@ -30,7 +32,7 @@ const AdminList: FC<AdminListProps> = ({ selectProduct }) => {
 
   const showFilterModal = showFilter && (
     <Modal onClose={handleClose}>
-      <Filter></Filter>
+      <Filter setFilteredData={setFilteredData}></Filter>
     </Modal>
   );
 

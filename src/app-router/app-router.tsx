@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Layout from '../components/UI/Layout';
 import Loading from '../components/UI/Loading';
-import SingleProductPage from '../components/pages/SingleProductPage';
 
 import { routes } from './route';
 
@@ -21,6 +20,7 @@ const Jiggers = lazy(() => import('../components/pages/Jiggers'));
 const Knives = lazy(() => import('../components/pages/Knives'));
 const Machine = lazy(() => import('../components/pages/Machine'));
 const Return = lazy(() => import('../components/pages/ReturnPolicy'));
+const SingleProductPage = lazy(() => import('../components/pages/SingleProductPage'));
 const Search = lazy(() => import('../components/pages/Search'));
 const Sets = lazy(() => import('../components/pages/Sets'));
 const Terms = lazy(() => import('../components/pages/Terms'));
@@ -34,7 +34,7 @@ export const AppRouter: FC = () => {
             <Route path={routes.DASHBOARD} element={<Dashboard />} />
             <Route path={routes.ABOUT} element={<About />} />
             <Route path={routes.ADMIN} element={<Admin />} />
-            <Route path={routes.BARSTUFF} element={<BarStuff />}></Route>
+            <Route path={routes.BARSTUFF} element={<BarStuff />} />
             <Route path={`${routes.BARSTUFF}/:id`} element={<SingleProductPage />} />
             <Route path={routes.BARWARE} element={<Barware />} />
             <Route path={routes.BOOKS} element={<Books />} />

@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Grid from '@mui/material/Grid';
 
-import FeaturedCard from '../card/FeaturedCard.tsx';
+import FeaturedCard from '../card/FeaturedCard/FeaturedCard';
 
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { ShopItem } from '../../types/products';

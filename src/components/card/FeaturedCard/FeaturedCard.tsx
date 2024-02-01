@@ -1,5 +1,3 @@
-import { FC } from 'react';
-
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
@@ -16,7 +14,7 @@ const StyledCard = styled(Card)({
   },
 });
 
-const FeaturedCard: FC<CardProps> = ({ product, onClick }) => {
+const FeaturedCard = ({ product, onClick }: CardProps) => {
   const { image, name, material, price } = product;
   return (
     <StyledCard sx={{ width: 230, cursor: 'pointer', padding: 1 }} onClick={onClick}>

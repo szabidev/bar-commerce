@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
@@ -16,10 +16,11 @@ import CartCounter from '../CartCounter';
 import { routes } from '../../../app-router';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 
-const UserMenu: FC = () => {
-  const store = useAppSelector((state) => state);
-  const { isSignedIn, isRegistered, isAdmin } = store.userDetails;
-  const { totalItems } = store.cartDetail;
+const UserMenu = () => {
+  const userDetails = useAppSelector((state) => state.userDetails);
+  const cartDetail = useAppSelector((state) => state.cartDetail);
+  const { isSignedIn, isRegistered, isAdmin } = userDetails;
+  const { totalItems } = cartDetail;
   const [showLogin, setShowLogin] = useState<boolean>(false);
   const [showRegister, setShowRegister] = useState<boolean>(false);
 

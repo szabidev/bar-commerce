@@ -1,4 +1,4 @@
-import { FormEvent, useState, FC } from 'react';
+import { FormEvent, useState } from 'react';
 
 import Container from '@mui/material/Container';
 
@@ -29,14 +29,16 @@ const containerStyle = {
   minHeight: '700px',
 };
 
-const AdminForm: FC<{
+interface AdminFormProps {
   selectedItem: ShopItem | null;
   setSelectedItem: (x: ShopItem | null) => void;
-}> = ({ selectedItem, setSelectedItem }) => {
+}
+
+const AdminForm = ({ selectedItem, setSelectedItem }: AdminFormProps) => {
   const dispatch = useAppDispatch();
-  const store = useAppSelector((state) => state.productsDetail.products);
-  const { allProducts } = store;
-  const [productForm, setProductForm] = useState(initialState);
+  const { products } = useAppSelector((state) => state.productsDetail);
+  const { allProducts } = products;
+  const [productForm, setProductForm] = useState<ShopItem>(initialState);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -140,7 +142,7 @@ const AdminForm: FC<{
         throw new Error('Failed to update product');
       }
 
-      const updatedProducts = allProducts.map((product) =>
+      const updatedProducts = allProducts.map((product: ShopItem) =>
         product.id === id ? updatedProduct : product,
       );
 
@@ -201,11 +203,11 @@ const AdminForm: FC<{
 
   const removeProduct = () => {
     if (selectedItem) {
-      handleDelete(selectedItem.id as string | number);
+      handleDelete(selectedItem.id as string);
     }
   };
 
-  const handleDelete = async (id: string | number) => {
+  const handleDelete = async (id: string) => {
     await fetch(`${BASE_URL}${path.barstuff}/${id}`, {
       method: 'DELETE',
     });

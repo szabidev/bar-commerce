@@ -1,6 +1,4 @@
-import { FC } from 'react';
-
-const NotificationBar: FC<{ message: string }> = ({ message }) => {
+const NotificationBar = ({ message }: { message: string }) => {
   return (
     <div className="notification__container">
       <div className="notification__message">{message}</div>

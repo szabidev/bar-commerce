@@ -1,16 +1,9 @@
-import { FC } from 'react';
+interface RegisterProps {
+  onClose: () => void;
+  setShowLogin: (x: boolean) => void;
+}
 
-import Link from '@mui/material/Link';
-
-const Register: FC<{ onClose: () => void; setShowLogin: (x: boolean) => void }> = ({
-  onClose,
-  setShowLogin,
-}) => {
-  const linkStyle = {
-    color: 'rgb(255,255,255)',
-    letterSpacing: '1px',
-  };
-
+const Register = ({ onClose, setShowLogin }: RegisterProps) => {
   const handleRegisterSubmit = (event: any) => {
     console.log(event.target.value);
   };

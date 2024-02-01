@@ -3,13 +3,20 @@ import { useState } from 'react';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { ShopItem } from '../../../types/products';
 
-const Filter = () => {
+interface FilterProps {
+  setFilteredData: (item: string | ShopItem[] | undefined) => void;
+}
+
+// FIX FILTER FIRST
+
+const Filter = ({ setFilteredData }: FilterProps) => {
   const store = useAppSelector((state) => state.productsDetail);
   const { allProducts } = store.products;
   const { productsByType } = store.products;
   const { productsByClass } = store.products;
   const [selected, setSelected] = useState<{ [key: string]: boolean }>({});
   const [searchTerm, setSearchTerm] = useState<string | undefined>('');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedProducts, setSelectedProducts] = useState<ShopItem[]>([]);
 
   const separateCamelCase = (string: string) => {
@@ -49,6 +56,10 @@ const Filter = () => {
       }
       return acc;
     }, []);
+  };
+
+  const handleFilter = () => {
+    setFilteredData(filteredProducts);
   };
 
   const filteredProducts = searchTerm && findMatchingProducts(searchTerm);
@@ -94,7 +105,9 @@ const Filter = () => {
           </form>
         </div>
         <div className="filter__action">
-          <button type="submit">Apply</button>
+          <button type="submit" onClick={handleFilter}>
+            Apply
+          </button>
           <button type="button">Cancel</button>
         </div>
       </div>

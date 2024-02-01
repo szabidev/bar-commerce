@@ -1,19 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 
 import { Grid, Paper } from '@mui/material';
-import { styled } from '@mui/system';
 
 import ProductCard from '../../card/ProductCard';
 
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { ShopItem } from '../../../types/products';
 import { path } from '../../../shared/ts/variables';
-
-const StyledGrid = styled(Grid)({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-});
 
 const BarStuff = () => {
   const navigate = useNavigate();
@@ -58,7 +51,7 @@ const BarStuff = () => {
                 </div>
               )}
               {filteredItems.map((product: ShopItem) => (
-                <StyledGrid
+                <Grid
                   key={product.id}
                   xs={12}
                   sm={6}
@@ -77,7 +70,7 @@ const BarStuff = () => {
                       onClick={() => handleNavigate(product.id!)}
                     />
                   </Paper>
-                </StyledGrid>
+                </Grid>
               ))}
             </Grid>
           </div>

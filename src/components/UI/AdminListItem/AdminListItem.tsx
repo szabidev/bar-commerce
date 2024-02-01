@@ -1,5 +1,3 @@
-import { FC } from 'react';
-
 import { Paper } from '@mui/material';
 
 interface AdminListItemProps {
@@ -9,7 +7,7 @@ interface AdminListItemProps {
   onSelect: () => void;
 }
 
-const AdminListItem: FC<AdminListItemProps> = ({ image, name, productClass, onSelect }) => {
+const AdminListItem = ({ image, name, productClass, onSelect }: AdminListItemProps) => {
   return (
     <li className="adminlist__item" onClick={onSelect}>
       <Paper sx={{ margin: '15px 0' }}>

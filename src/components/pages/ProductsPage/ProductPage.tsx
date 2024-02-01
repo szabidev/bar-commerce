@@ -1,23 +1,15 @@
-import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Container from '@mui/material/Container';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
-import { Paper, Grid } from '@mui/material';
+import { Paper, Grid, Container } from '@mui/material';
+import { styled } from '@mui/system';
 
 import ProductCard from '../../card/ProductCard';
 
-import { styled } from '@mui/system';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { routes } from '../../../app-router';
 import { ShopItem } from '../../../types/products';
 import { path } from '../../../shared/ts/variables';
-
-const StyledGrid = styled(Grid)({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-});
 
 const StyledIcon = styled(ArrowCircleLeftIcon)({
   transition: 'all .2s ease',
@@ -32,7 +24,7 @@ interface ProductPageProps {
   title: string;
 }
 
-const ProductPage: FC<ProductPageProps> = ({ pageType, title }) => {
+const ProductPage = ({ pageType, title }: ProductPageProps) => {
   const navigate = useNavigate();
   const store = useAppSelector((state) => state.productsDetail.products);
   const { productsByType } = store;
@@ -76,7 +68,7 @@ const ProductPage: FC<ProductPageProps> = ({ pageType, title }) => {
           </div>
         )}
         {product.map((product: ShopItem) => (
-          <StyledGrid
+          <Grid
             key={product.id}
             xs={12}
             sm={6}
@@ -95,7 +87,7 @@ const ProductPage: FC<ProductPageProps> = ({ pageType, title }) => {
                 onClick={() => handleNavigate(product.id!)}
               />
             </Paper>
-          </StyledGrid>
+          </Grid>
         ))}
       </Grid>
     </Container>
