@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 
-import { CardMedia } from '@mui/material';
+import { CardMedia, Typography } from '@mui/material';
 
 import Counter from '../../UI/Counter';
 
@@ -27,7 +27,8 @@ const SingleProductPage = () => {
         <div className="single__product--info">
           <div className="product__name">{name}</div>
           <p className="product__material">{material}</p>
-          <p className="product__price">${price}</p>
+          <p className="product__price">${price} </p>
+          {/* Add currecny next to price, currency prop, state */}
           <p className="product__vat">Tax included</p>
           <Counter />
           <div className="description">
